@@ -1,0 +1,52 @@
+<%- include('partial/header') %>
+
+  <section class="blog-page">
+    <div class="blog-heading">
+      <h1>😂 Funny Developer Blogs</h1>
+      <p>
+        Read hilarious coding jokes, debugging struggles, and relatable tech moments 🚀
+      </p>
+    </div>
+
+    <div class="blog-container">
+      <% blogs.forEach(blog=> { %>
+        <div class="blog-card">
+          <div class="blog-top">
+            <h2>
+              <a href="/blogs/<%= blog.id %>">
+                <%= blog.title %>
+              </a>
+            </h2>
+            <% if(blog.author==='admin' ) { %>
+              <span class="admin-badge">Admin</span>
+              <% } else { %>
+                <span class="user-badge">User</span>
+                <% } %>
+          </div>
+          <p class="blog-content">
+            <%= blog.content.substring(0, 120) %>...
+          </p>
+          <div class="blog-footer">
+            <p>
+              ✍️ Written by
+              <b>
+                <%= blog.author %>
+              </b>
+            </p>
+            <div class="blog-actions">
+              <a href="/blogs/<%= blog.id %>" class="read-btn">
+                Read More
+              </a>
+              <% if(blog.author==='admin' ) { %>
+                <a href="/delete/<%= blog.id %>" class="delete-btn">
+                  Delete
+                </a>
+                <% } %>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+    </div>
+  </section>
+
+  <%- include('partial/footer') %>
